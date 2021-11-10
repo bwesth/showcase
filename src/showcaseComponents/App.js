@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import "../App.css";
-
+import Parse from "parse";
 
 import MouseCoords from "./MouseCoords";
 import MouseClickLog from "./MouseClicksLog";
@@ -10,14 +10,20 @@ import Draggable from "./Draggable";
 // import MouseClickLog from "./HOCs/MouseClicksLog";
 // import Draggable from "./HOCs/DraggableHOC";
 
-
-import Humlebuks from "./HOCs/Humlebuks"
+import Humlebuks from "./HOCs/Humlebuks";
 // import Humlebuks from "./RenderProps/HumlebuksWithRenderProps";
+console.log("App function fired");
+Parse.initialize(process.env.REACT_APP_API_KEY, process.env.REACT_APP_JS_KEY);
+Parse.serverURL("https://parseapi.back4app.com/");
 
 function App() {
   const routes = [
     { path: "/hoc", text: "Mouse Coords", component: MouseCoords },
-    { path: "/hoc/clickLog", text: "Mouse Click Log", component: MouseClickLog },
+    {
+      path: "/hoc/clickLog",
+      text: "Mouse Click Log",
+      component: MouseClickLog,
+    },
     { path: "/hoc/draggable", text: "draggable", component: Draggable },
     { path: "/hoc/humlebuks", text: "Humlebuks", component: Humlebuks },
   ];
